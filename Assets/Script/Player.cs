@@ -8,20 +8,24 @@ public class Player : MonoBehaviour
     public float entradaHorizontal ;
     public float entradaVertical ;
 
-    public GameObject pfLaser ;
-
+   
+     public GameObject pfLaser;
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Start de "+this.name);
-        velocidade = 3.0f ;
-        transform.position = new Vector3(7.37,-5.78,0);
+        velocidade = 6.0f ;
+        transform.position = new Vector3(0f,-2.2f,0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+         
+       if (Input.GetKeyDown(KeyCode.Space)){
+               Instantiate (pfLaser, transform.position + new Vector3(0,1.1f,0), Quaternion.identity);
+       }                  
+
         entradaHorizontal = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right*Time.deltaTime*velocidade*entradaHorizontal);
 
@@ -33,26 +37,7 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(7.37f,transform.position.y,0);
         
         }
-
-        entradaVertical = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.up*Time.deltaTime*velocidade*entradaVertical);
-
-        if ( transform.position.y  > 0 ) {
-            transform.position = new Vector3(transform.position.x,0,0);
-        }
-
-        if ( transform.position.y  < -3.95f  ) {
-            transform.position = new Vector3(transform.position.x,-3.95f,0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space)){
-
-            
-
-            }
-
-
-        
+          
    }
 
 }
